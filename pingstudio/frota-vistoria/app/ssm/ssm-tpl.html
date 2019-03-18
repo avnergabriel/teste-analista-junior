@@ -1,0 +1,153 @@
+<!-- Slider -->
+<div class="swiper-container swiper-container-ssm bg-gray-1">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide ">
+            <div class="content-block-title swiper-container-title">Selecione um Grupo de Servi&ccedil;o</div>
+            <div class="content-block ">
+                <div class="content-block-inner">
+                    {{#each grupos}}
+                    <div class="row">
+                        {{#each .}}
+                        <div class="col-50">
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="list-block">
+                                        <ul>
+                                            <li>
+                                                <a href="#" on-click="@this.abrirTelaDefeitos(this)" class="item-link item-content">
+                                                    <div class="item-media"><i class="icon ion-settings"></i></div>
+                                                    <div class="item-inner">
+                                                        <div class="item-title">{{.Nome}}</div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="content-block-title swiper-container-title">Selecione um Defeito</div>
+            <div class="list-block">
+                <ul>
+                    {{#each defeitos}}
+                    <li>
+                        <a href="#" class="item-link item-content" on-click="@this.abrirTelaSsm(., grupo)">
+                            <div class="item-media"><i class="icon ion-gear-b"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title">{{.Codigo}} - {{.Nome}}</div>
+                            </div>
+                        </a>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+
+        </div>
+        <div class="swiper-slide">
+            <div class="list-block">
+                <ul>
+                    <li class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">Data</div>
+                            <div class="item-after">
+                                {{formatDateTime(dados.Data)}}
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">Veículo</div>
+                            <div class="item-after">
+                                {{defeito.Grupo.Veiculo.Numero}}
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">Defeito</div>
+                            <div class="item-after">
+                                {{defeito.Codigo}} - {{defeito.Nome}}
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+            {{#if solicitacoesServico}}
+            <div class="content-block inset tablet-inset">
+                <div class="card">
+                    <div class="card-header bg-danger">
+                        <span>Observe se o problema j&aacute; foi informado</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-content-inner list-ssm ">
+                            <div class="list-block">
+                                <ul>
+                                    {{#each solicitacoesServico}}
+                                    <li class="item-content">
+                                        <div class="item-inner">
+                                            <span class="text-danger">{{Informacoes ? Informacoes : 'Sem informação adicional.'}}</span>
+                                            <div class="item-after">
+                                                <span>{{getDate(Data)}} - {{getTime(Hora)}}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {{/each}}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            {{/if}}
+
+            <div class="list-block">
+                <ul>
+                    <li class="align-top">
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title">Descri&ccedil;&atilde;o</div>
+                                <div class="item-input">
+                                    <textarea id="informacoes" value="{{dados.Informacoes}}"></textarea>
+                                    <div style="text-align: right;width: 100%;padding-bottom: 5px;background: #ffffff">
+                                        <i class="speechinput informacoes icon ion-android-microphone color-gray" on-click="@this.transcrever('.informacoes', 'dados.Informacoes')"></i>
+                                        <i class="speechinput remover-informacoes icon ion-trash-a {{dados.Informacoes ? 'color-red' : 'disabled'}} " on-click="@this.removerTexto('dados.Informacoes')"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="list-block">
+                <ul>
+                    <li>
+                        <a href="#" id="autocomplete-standalone-popup" class="item-link item-content autocomplete-opener">
+                            <input type="hidden" placeholder="Solicitante">
+                            <div class="item-inner">
+                                <div class="item-title">Solicitante</div>
+                                <div class="item-after"></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="content-block">
+                <div class="ssm-imagens">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="swiper-pagination  swiper-pagination-ssm"></div>
+</div>

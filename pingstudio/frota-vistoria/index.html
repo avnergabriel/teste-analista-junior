@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Color theme for statusbar -->
+    <meta name="theme-color" content="#2196f3">
+    <!-- Your app title -->
+    <title>My App</title>
+    <link rel="stylesheet" href="dist/styles.css">
+    <link rel="stylesheet" href="css/ionicons-2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/f7-icons/css/framework7-icons.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<!-- Views -->
+<div class="views">
+    <!-- First, we need to add Panel's overlay that will overlays app while panel is opened -->
+    <div class="panel-overlay"></div>
+
+    <!-- Left panel -->
+    <div class="panel panel-left panel-cover menu-app">
+        ... panel content goes here ...
+    </div>
+
+    <!-- Your main view, should have "view-main" class -->
+    <div class="view view-main">
+        <!-- Pages container, because we use fixed navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages navbar-fixed toolbar-fixed">
+            <!-- Page, "data-page" contains page name -->
+            <div data-page="index" class="page">
+
+                <!-- Top Navbar. In Material theme it should be inside of the page-->
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="left">
+                            <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
+                        </div>
+                        <div class="center"> AVAN&Ccedil;AR
+                        </div>
+                    </div>
+                </div>
+                <div class="page-content">
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="popup popup-config bg-gray-1">
+    <div class="content-block-title">Configurações</div>
+    <div class="content-block">
+        <div class="content-popup-config inset bg-white" style="padding-bottom: 5px">
+
+        </div>
+        <a href="#" class="floating-button floating-button-to-popover close-popup color-purple">
+            <i class="icon icon-close"></i>
+        </a>
+    </div>
+</div>
+
+
+<div class="popover popover-ssm">
+    <div class="popover-angle"></div>
+    <div class="popover-inner">
+        <div class="list-block">
+            <ul>
+                <li><a href="#" class="list-button item-link btn-abrir-ssm color-red">Remover</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="popup popover-vistoria-detalhe tablet-fullscreen">
+    <div class="list-vistoria-detalhe">
+
+    </div>
+</div>
+
+<script type="text/javascript" src="cordova.js"></script>
+<script src="dist/bundle.js"></script>
+</body>
+</html>

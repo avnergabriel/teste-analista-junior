@@ -1,0 +1,326 @@
+<div class="swiper-container bg-gray-1 swiper-container-vistoria">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <div class="content-block  bg-white container-center center" style="width: 50%">
+                <div class="content-block-title swiper-container-title">Informe o número do veículo.</div>
+                <div class="content-block-inner">
+                    <div class="content-block">
+                        <div class="list-block tablet-inset inset">
+                            <ul class="content-vistoria-veiculo">
+                                <li>
+                                    <div class="item-content ">
+                                        <div class="item-input">
+                                            <input type="tel" pattern="[0-9]*" value="{{dados.Veiculo.Numero}}" maxlength="5"
+                                                   id="numeroVeiculo"
+                                                   style="text-align: center;text-transform: uppercase;font-size: 60px;height: auto">
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="#" class="button button-raised button-fill" on-click="@this.listarVerificacoes()">OK</a>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="content-block-title swiper-container-title">Selecione uma vistoria:</div>
+            <div class="list-block">
+                <ul>
+                    {{#each vistorias}}
+                    <li>
+                        <a href="#" class="item-link item-content" on-click="@this.abrirVistoria(Id)">
+                            <div class="item-inner">
+                                <div class="item-title">{{Nome}}</div>
+                            </div>
+                        </a>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="list-block">
+                <ul>
+                    <li class="item-content">
+                        <div class="item-media"><i class="icon ion-clipboard"></i></div>
+                        <div class="item-inner">
+
+                            <div class="item-title">{{data.Verificacao.Nome}}</div>
+                            <div class="item-after">{{data.DataHora}}</div>
+                        </div>
+                    </li>
+                    <li class="item-content">
+                        <div class="item-media"><i class="icon ion-android-bus"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title">#{{data.VeiculoNumero}}</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            {{#if data.SolicitacoesServico}}
+            
+            <div class="card">
+                <div class="card-header">Catraca</div>
+                <div class="card-contentcard-content-inner card-content-padding">                    
+                    <div class="list-block">
+                        <ul>
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-media"><i class="icon f7-icons">gear_fill</i></div>
+                                    <div class="item-inner">
+                                        <div class="item-title label">Número</div>
+                                        <div class="item-input">
+                                            <input type="tel"  name="Catraca" placeholder="1234" maxlength="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- <div class="card-footer"></div> -->
+            </div>
+
+            <div class="card">
+                <div class="card-header bg-danger" on-click="@this.toggleSsm()">
+                    <span>Solicita&ccedil;&otilde;es de Servi&ccedil;o em aberto</span>
+                    <span></span>
+                    <span class="badge color-red">{{data.SolicitacoesServico.length}}</span>
+                </div>
+                <div class="card-content">
+                    <div class="card-content-inner list-ssm ">
+                        <div class="list-block accordion-list">
+                            <ul>
+                                {{#each data.SolicitacoesServico}}
+                                <li class="accordion-item"><a href="#" class="item-content item-link">
+                                    <div class="item-inner">
+                                        <div class="item-title">
+                                            {{Defeito.Nome}}
+                                        </div>
+                                        <div class="item-after">
+                                            {{getDate(Data)}} - {{getTime(Hora)}}
+                                        </div>
+                                    </div>
+                                </a>
+                                    <div class="accordion-item-content">
+                                        <div class="content-block tablet-inset inset">
+                                            <p class="text-danger">{{Informacoes}}</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{/if}}
+            <div class="list-block cards-list vistoria-list">
+                <ul style="margin-bottom: 60px">
+                    {{#each data.Verificacao.Itens:i}}
+                    <li class="card custom-card">
+                        <div class="card-header {{.Valor ? 'bg-success' : 'bg-warning'}}">
+                            <div class="custom-card-title">
+                                <div class="vistoria-name" style="font-weight: bold">{{@index + 1}} - {{Nome}}</div>
+                                <div class="vistoria-item-description">{{Procedimentos}}</div>
+                            </div>
+                            <div class="buttons-row btn-card-actions">
+                                <a href="#" class="item-link badge bg-gray-1 app-padding no-ripple"
+                                   on-click="@this.anexarArquivo(.)"><i class="fa fa-camera"></i></a>
+                                <a href="#" class="item-link badge bg-gray-1 app-padding no-ripple"
+                                   on-click="@this.adicionarSsm(@index)"><i class="fa fa-wrench"></i></a>
+                            </div>
+
+                        </div>
+                        <div class="card-content">
+
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="list-block">
+                                        <ul>
+                                            <!-- Single radio input -->
+                                            <li>
+                                                <label class="label-radio item-content">
+                                                    <!-- Checked by default -->
+                                                    <input type="radio" name="{{.Valor}}" value="1">
+                                                    <div class="item-media">
+                                                        <i class="icon icon-form-radio"></i>
+                                                    </div>
+                                                    <div class="item-inner">
+                                                        <div class="item-title">Sim</div>
+                                                    </div>
+                                                </label>
+                                            </li>
+                                            <!-- Another radio input -->
+                                            <li>
+                                                <label class="label-radio item-content">
+                                                    <input type="radio" name="{{.Valor}}" value="0">
+                                                    <div class="item-media">
+                                                        <i class="icon icon-form-radio"></i>
+                                                    </div>
+                                                    <div class="item-inner">
+                                                        <div class="item-title">N&atilde;o</div>
+                                                    </div>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            {{#if .Arquivos}}
+                                <div class="content-block" style="padding: 0">
+                                    <div class="card custom-card">
+                                        <div class="card-header">
+                                            <div class="custom-card-title">
+                                                <div>Fotos</div>
+                                            </div>
+                                            <div class="buttons-row btn-card-actions">
+                                                <a href="#" class="item-link badge bg-gray-1 app-padding no-ripple" on-click="@this.removerFoto(.)"><i class="fa fa-trash-o"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="card-content">
+                                            <div class="list-block">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#" class="item-link item-content" on-click="@this.abrirFoto(.)">
+                                                            <div class="item-media"><i class="icon fa fa-camera"></i></div>
+                                                            <div class="item-inner">
+                                                                <div class="item-after">
+                                                                    {{.Arquivos.length}}
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            {{/if}}
+
+                            {{#if Ssm}}
+                            <div class="content-block-title"><span>Solicita&ccedil;&atilde;o de Servi&ccedil;o</span>
+                            </div>
+                            <div class="list-block media-list">
+                                <ul>
+                                    {{#each Ssm:j}}
+                                    <li class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title-row">
+                                                <div class="item-title">{{.Defeito.Nome}}</div>
+                                                <div class="item-after">
+                                                    <a style="padding: 5px" class="link color-red "
+                                                       on-click="@this.removerItemSsm(j, i)"><i
+                                                            class="icon fa fa-trash-o"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="item-subtitle">{{.Solicitante.Nome}}</div>
+                                            <div class="item-text">{{.Informacoes}}</div>
+                                        </div>
+                                    </li>
+                                    {{/each}}
+                                </ul>
+                            </div>
+
+                            <!--
+                            <div class="content-block-title"><span>Solicita&ccedil;&atilde;o de Servi&ccedil;o</span></div>
+                            <div class="content-block ssm-item">
+                                <div class="content-block-inner">
+                                    <p><i class="icon ion-settings"></i> {{Ssm.Defeito.Nome}}</p>
+                                    <p class="text-danger">{{Ssm.Informacoes}}</p>
+                                </div>
+                            </div>
+-->
+                            {{/if}}
+
+                        </div>
+                        <div class="card-footer"></div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="list-block">
+                <ul style="margin-bottom: 100px">
+                    <li class="item-content">
+                        <div class="item-media"><i class="icon ion-clipboard"></i></div>
+                        <div class="item-inner">
+
+                            <div class="item-title">{{data.Verificacao.Nome}}</div>
+                            <div class="item-after">{{data.DataHora}}</div>
+                        </div>
+                    </li>
+                    <li class="item-content">
+                        <div class="item-media"><i class="icon ion-android-bus"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title">#{{data.VeiculoNumero}}</div>
+                        </div>
+                    </li>
+                    <li class="item-divider">Respostas</li>
+                    {{#each data.Verificacao.Itens}}
+                    <li class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">{{@index + 1}} - {{Nome}}</div>
+                            <div class="item-after">{{@this.obterDescricaoRespostaVistoria(Valor)}}</div>
+                        </div>
+                    </li>
+                    {{/each}}
+                    <li class="item-divider">Problemas</li>
+                    {{#if possuiSsm}}
+                    {{#each data.Verificacao.Itens}}
+                    {{#if .Ssm}}
+                    {{#each .Ssm}}
+                    <li class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">{{Defeito.Nome}}</div>
+                            <div class="item-after">{{Solicitante.Nome}}</div>
+                        </div>
+                    </li>
+                    {{/each}}
+                    {{/if}}
+                    {{/each}}
+                    {{else}}
+                    <li class="item-content">
+                        <div class="item-inner">
+                            <p>Nenhum problema relatado</p>
+                        </div>
+                    </li>
+                    {{/if}}
+                    <li class="item-divider"></li>
+                    <li>
+                        <div class="content-block">
+                            <div class="content-block-inner">
+                                <p>
+                                    {{#if data.assinatura}}
+                                <div style="background: #ffffff; height: 100px;text-align: center" on-click="@this.adicionarAssinatura()">
+                                    <img
+                                         style="background: #ffffff;height: 100%;" src="{{data.assinatura}}">
+                                </div>
+                                {{else}}
+
+                                <a href="#" class="button active button-fill"
+                                   on-click="@this.adicionarAssinatura()">{{data.assinatura ?
+                                    'ASSINADO':'ASSINAR'}}</a>
+                                {{/if}}
+
+                                </p>
+
+                                <p><a href="#" class="button active button-fill color-green btn-revisar">REVISAR</a></p>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div class="swiper-pagination swiper-pagination-vistoria"></div>
+
+</div>
+

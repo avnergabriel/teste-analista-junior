@@ -63,3 +63,4 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+"# teste-analista-junior"  git init git add README.md git commit -m "first commit" git remote add origin https://github.com/avnergabriel/teste-analista-junior.git git push -u origin master

@@ -1,0 +1,74 @@
+<div class="list-block" style="margin: 0">
+    <ul>
+        <li class="item-content">
+            <div class="item-media"><i class="icon ion-clipboard"></i></div>
+            <div class="item-inner">
+
+                <div class="item-title">{{dados.Lista.Nome}}</div>
+                <div class="item-after">{{getDate(dados.Data)}} {{dados.Hora}}</div>
+            </div>
+        </li>
+        <li class="item-content">
+            <div class="item-media"><i class="icon ion-android-bus"></i></div>
+            <div class="item-inner">
+                <div class="item-title">#{{dados.Ativo.Numero}}</div>
+            </div>
+        </li>
+        <li class="item-divider">Respostas</li>
+        {{#each dados.Itens}}
+        <li class="item-content">
+            <div class="item-inner">
+                <div class="item-title">{{@index + 1}} - {{Item.Nome}}</div>
+                <div class="item-after">{{@this.obterDescricaoRespostaVistoria(Valor)}}</div>
+            </div>
+        </li>
+        {{/each}}
+        <li class="item-divider">Problemas</li>
+        {{#if dados.possuiSsm}}
+            {{#each dados.Itens}}
+                {{#if .Ssm}}
+                    {{#each .Ssm}}
+                    <li class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">{{Defeito.Nome}}</div>
+                            <div class="item-after">{{Solicitante.Nome}}</div>
+                        </div>
+                    </li>
+                    {{/each}}
+                {{/if}}
+            {{/each}}
+        {{else}}
+        <li class="item-content">
+            <div class="item-inner">
+                <p>Nenhum problema relatado</p>
+            </div>
+        </li>
+        {{/if}}
+        <li class="item-divider">Assinatura</li>
+        <li>
+            <div class="content-block" style="margin: 0">
+                <div class="content-block-inner">
+                    <p>
+                        {{#if dados.Assinatura}}
+                    <div style="height: 100px;text-align: center" class="bg-white">
+                        <img
+                                style="background: #ffffff;height: 100%;" src="data:image/png;base64,{{dados.Assinatura}}">
+                    </div>
+                    {{else}}
+
+                    <p><a href="#" class="button active button-fill disabled">NÃO ASSINADO</a></p>
+                    {{/if}}
+
+                    </p>
+
+                </div>
+            </div>
+        </li>
+    </ul>
+
+</div>
+<div class="content-block">
+    <div class="content-block-inner">
+        <p><a href="#" class="button active button-fill close-popup">Fechar</a></p>
+    </div>
+</div>

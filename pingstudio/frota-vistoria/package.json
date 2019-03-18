@@ -1,0 +1,37 @@
+{
+  "name": "frota-www",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": ".\\node_modules\\.bin\\webpack --watch",
+    "start": ".\\node_modules\\.bin\\webpack-dev-server --open",
+    "build": ".\\node_modules\\.bin\\webpack --optimize-minimize",
+    "dev": "webpack-dev-server --progress --colors --inline --hot"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "extract-text-webpack-plugin": "^2.1.0",
+    "uglify-js": "^2.8.15",
+    "uglifyjs-webpack-plugin": "^0.3.1",
+    "webpack": "^2.3.1",
+    "webpack-dev-server": "^2.4.2"
+  },
+  "dependencies": {
+    "class.js": "0.0.1",
+    "css-loader": "^0.27.3",
+    "file-loader": "^0.10.1",
+    "framework7": "^1.5.4",
+    "fs": "0.0.1-security",
+    "jquery": "^3.1.1",
+    "jquery-mobile-min": "^1.1.4",
+    "moment": "^2.18.1",
+    "ractive": "^0.8.12",
+    "ractive-component-loader": "^1.2.0",
+    "ractive-loader": "^0.5.6",
+    "sha256": "^0.2.0",
+    "string": "^3.3.3"
+  }
+}

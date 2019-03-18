@@ -1,0 +1,43 @@
+<div class="card custom-card">
+    <div class="card-header {{bgColor ? bgColor : 'bg-info'}}">
+        <div class="custom-card-title">
+            <div>Fotos</div>
+        </div>
+        <div class="buttons-row btn-card-actions">
+            <a href="#" class="item-link badge bg-gray-1 app-padding no-ripple" on-click="@this.adicionarFoto()"><i class="fa fa-camera"></i></a>
+            <a href="#" class="item-link badge bg-gray-1 app-padding no-ripple" on-click="@this.removerFoto()"><i class="fa fa-trash-o"></i></a>
+        </div>
+
+    </div>
+    <div class="card-content">
+        <div class="list-block">
+            <ul>
+                {{#if data.fotos}}
+                <li>
+                    <a href="#" class="item-link item-content" on-click="@this.abrirFoto()">
+                        <div class="item-media"><i class="icon fa fa-camera"></i></div>
+                        <div class="item-inner">
+                            <div class="item-after">
+                                {{data.fotos.length}}
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                {{else}}
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-after">
+                                Sem Foto
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                {{/if}}
+            </ul>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,32 @@
+<div class="list-block ">
+    <ul>
+        <li>
+            <div class="item-content ">
+                <div class="item-inner">
+                    <div class="item-title label">Servidor</div>
+                    <div class="item-input">
+                        <input type="url" value="{{data.servidor.endereco}}"   placeholder="IP ou url">
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="item-content ">
+                <div class="item-inner">
+                    <div class="item-title label">Porta</div>
+                    <div class="item-input">
+                        <input type="number" value="{{data.servidor.porta}}"   placeholder="1234">
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="row">
+    <div class="col-30"></div>
+    <div class="col-40">
+        <a href="#" class="button" on-click="@this.salvar()">salvar</a>
+    </div>
+    <div class="col-30"></div>
+</div>

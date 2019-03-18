@@ -1,0 +1,11 @@
+{{#each data}}
+    <li>
+        <a href="#" class="item-link item-content" on-click="@this.visualizar(Id)">
+            <div class="item-media"><i class="icon ion-android-list"></i></div>
+            <div class="item-inner">
+                <div class="item-title">{{getDate(Data)}} - {{getTime(Hora)}}</div>
+                <div class="item-after">Ve&iacute;culo {{Ativo.Numero}} ({{Ativo.Placa}})</div>
+            </div>
+        </a>
+    </li>
+{{/each}}
